@@ -4,6 +4,15 @@ import datetime
 from urlparse import urlparse
 ua='"Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9.0.13) Gecko/2009080316 Ubuntu/8.04 (hardy) Firefox/3.0.13"'
 args=' --connect-timeout 20 --socks5 localhost:'
+torconfig = '''SocksListenAddress 127.0.0.1
+StrictExitNodes 1
+NumEntryGuards 10
+EnforceDistinctSubnets 0
+CircuitBuildTimeout 30
+NewCircuitPeriod 15
+KeepalivePeriod 60
+Log err stdout
+StrictEntryNodes 1'''
 def getnodes():
 	Curl = curl('http://torstatus.blutmagie.de/index.php', 12)
 	Curl.c.setopt(pycurl.POSTFIELDS, 'SR=Bandwidth&SO=Desc&FAuthority=OFF&FBadDirectory=OFF&FBadExit=OFF&FExit=1&FFast=OFF&FGuard=OFF&FHibernating=OFF&FNamed=OFF&FStable=OFF&FRunning=1&FValid=OFF&FV2Dir=OFF&CSField=Bandwidth&CSMod=GreaterThan&CSInput=888')
@@ -14,7 +23,7 @@ def getnodes():
 	exitnodes = re.findall(r"<a href=\'router_detail.php\?FP=[^']*\'>(\w*)<\/a>", nodes_html, re.M)
 	return exitnodes
 def start_tor(exitnode, sockport):
-	torconfig = open('torrc', 'r').read()
+	#~ torconfig = open('torrc', 'r').read()
 	torlines = torconfig + '\nSocksPort ' + sockport + '\nDataDirectory /tmp/.tor' + sockport + '\nPidFile /tmp/pidfile' + sockport
 	ntorlines = torlines + '\nExitNodes ' + exitnode
 	torrc = open('/tmp/torrc' + sockport, 'w')
