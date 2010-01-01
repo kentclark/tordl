@@ -12,7 +12,7 @@ CircuitBuildTimeout 30
 NewCircuitPeriod 15
 KeepalivePeriod 60
 Log err stdout
-StrictEntryNodes 1'''
+'''
 def getnodes():
 	Curl = curl('http://torstatus.blutmagie.de/index.php', 12)
 	Curl.c.setopt(pycurl.POSTFIELDS, 'SR=Bandwidth&SO=Desc&FAuthority=OFF&FBadDirectory=OFF&FBadExit=OFF&FExit=1&FFast=OFF&FGuard=OFF&FHibernating=OFF&FNamed=OFF&FStable=OFF&FRunning=1&FValid=OFF&FV2Dir=OFF&CSField=Bandwidth&CSMod=GreaterThan&CSInput=888')

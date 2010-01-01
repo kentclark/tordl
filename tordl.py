@@ -59,10 +59,10 @@ class ui_main:
 		self.input_pane = pane('', 2, self.scr_width, self.scr_height - 2, 0, False)
 		self.act_pane = self.proxy_pane
 		self.panes = self.gen_panes()
-		#~ self.exitnodes = downloader.getnodes()[0:9]
-		#~ if len(self.exitnodes) == 0:
-			#~ self.exitnodes = ['uranus', 'technowargod', 'blutmagie', 'UBIT2', 'desync', 'gpfTOR3', '100MbitdedicatedRLY', 'bach', 'dragonking']
-		self.exitnodes = ['uranus', 'technowargod', 'blutmagie', 'UBIT2', 'desync', 'gpfTOR3', '100MbitdedicatedRLY', 'bach', 'dragonking']
+		self.exitnodes = downloader.getnodes()[0:9]
+		if len(self.exitnodes) == 0:
+			self.exitnodes = ['uranus', 'technowargod', 'blutmagie', 'UBIT2', 'desync', 'gpfTOR3', '100MbitdedicatedRLY', 'bach', 'dragonking']
+		#~ self.exitnodes = ['uranus', 'technowargod', 'blutmagie', 'UBIT2', 'desync', 'gpfTOR3', '100MbitdedicatedRLY', 'bach', 'dragonking']
 		self.ports = ['-', '-', '-', '-', '-', '-', '-', '-', '-']
 	def gen_panes(self):
 		panes = [self.download_pane, self.proxy_pane]
